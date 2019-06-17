@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: root
+  vars:
+        - servername: nginx
+  tasks:
+        - name: yum install {{ servername }}
+          yum: name={{ servername }}
+          
+        - name: start service
+          service: name={{ servername }} state=started
+          tags: start{{ servername }}
